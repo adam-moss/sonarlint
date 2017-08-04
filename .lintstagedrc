@@ -1,6 +1,6 @@
 {
     linters: {
-        "package.json": "security:outdated"
+        "package.json": [ "security:outdated", "security:nsp" ]
     },
     verbose: true,
 }
