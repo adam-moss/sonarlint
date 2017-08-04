@@ -1,0 +1,24 @@
+{
+    "name": "sonarlint",
+    "version": "1.0.0",
+    "author": "Adam Moss",
+    "license": "ISC",
+    "description": "sonarlint",
+    "keywords": [
+        "sonarqube",
+        "sonarlint",
+        "lint"
+    ],
+    "homepage": "https://github.com/adam-moss/sonarlint",
+    "repository": {
+        "type": "git",
+        "url": "git+ssh://git@github.com:adam-moss/sonarlint.git"
+    },
+    "bugs": {
+        "url": "https://github.com/adam-moss/sonarlint/issues"
+    },
+    "main": "",
+    "scripts": {},
+    "dependencies": {},
+    "devDependencies": {}
+}
