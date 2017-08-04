@@ -19,16 +19,20 @@
     },
     "main": "",
     "scripts": {
+        "precommit": "lint-staged",
         "commitmsg": "commitlint --edit",
         "test": "npm run pipeline",
-        "pipeline": "npm run compliance-tests",
+        "pipeline": "npm run compliance-tests && npm run security-tests",
         "compliance-tests": "npm run compliance:commitlint",
-        "compliance:commitlint": "commitlint --from=develop --to=HEAD"
+        "compliance:commitlint": "commitlint --from=develop --to=HEAD",
+        "security-tests": "npm run security:outdated",
+        "security:outdated": "npm outdated || true"
     },
     "dependencies": {},
     "devDependencies": {
         "@commitlint/cli": "3.0.4",
         "@commitlint/config-angular": "3.0.4",
-        "husky": "0.14.3"
+        "husky": "0.14.3",
+        "lint-staged": "4.0.2"
     }
 }
