@@ -18,7 +18,17 @@
         "url": "https://github.com/adam-moss/sonarlint/issues"
     },
     "main": "",
-    "scripts": {},
+    "scripts": {
+        "commitmsg": "commitlint --edit",
+        "test": "npm run pipeline",
+        "pipeline": "npm run compliance-tests",
+        "compliance-tests": "npm run compliance:commitlint",
+        "compliance:commitlint": "commitlint --from=develop --to=HEAD"
+    },
     "dependencies": {},
-    "devDependencies": {}
+    "devDependencies": {
+        "@commitlint/cli": "3.0.4",
+        "@commitlint/config-angular": "3.0.4",
+        "husky": "0.14.3"
+    }
 }
