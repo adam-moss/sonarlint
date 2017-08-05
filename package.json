@@ -27,7 +27,8 @@
         "compliance:commitlint": "commitlint --from=develop --to=HEAD",
         "security-tests": "npm run security:outdated && npm run security:nsp",
         "security:outdated": "npm outdated || true",
-        "security:nsp": "nsp check"
+        "security:nsp": "nsp check",
+        "security:snyk": "snyk test --dev"
     },
     "dependencies": {},
     "devDependencies": {
@@ -35,6 +36,7 @@
         "@commitlint/config-angular": "3.0.4",
         "husky": "0.14.3",
         "lint-staged": "4.0.2",
-        "nsp": "2.7.0"
+        "nsp": "2.7.0",
+        "snyk": "1.38.1"
     }
 }
