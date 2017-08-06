@@ -26,6 +26,7 @@
     "scripts": {
         "precommit": "lint-staged",
         "commitmsg": "commitlint --edit",
+        "release": "standard-version && git commit --amend --no-edit --signoff",
         "test": "npm run pipeline",
         "pipeline": "npm run compliance-tests && npm run security-tests && quality-tests",
         "compliance-tests": "npm run compliance:commitlint",
@@ -44,6 +45,7 @@
         "husky": "0.14.3",
         "lint-staged": "4.0.2",
         "nsp": "2.7.0",
-        "snyk": "1.38.1"
+        "snyk": "1.38.1",
+        "standard-version": "4.2.0"
     }
 }
