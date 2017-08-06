@@ -1,6 +1,6 @@
 {
     "name": "sonarlint",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "author": "Adam Moss",
     "license": "ISC",
     "description": "sonarlint",
@@ -17,18 +17,25 @@
     "bugs": {
         "url": "https://github.com/adam-moss/sonarlint/issues"
     },
+    "files": [
+        "src/**",
+        "vendor/**"
+    ],
+    "bin": "src/index.js",
     "main": "",
     "scripts": {
         "precommit": "lint-staged",
         "commitmsg": "commitlint --edit",
         "test": "npm run pipeline",
-        "pipeline": "npm run compliance-tests && npm run security-tests",
+        "pipeline": "npm run compliance-tests && npm run security-tests && quality-tests",
         "compliance-tests": "npm run compliance:commitlint",
         "compliance:commitlint": "commitlint --from=develop --to=HEAD",
         "security-tests": "npm run security:outdated && npm run security:nsp",
         "security:outdated": "npm outdated || true",
         "security:nsp": "nsp check",
-        "security:snyk": "snyk test --dev"
+        "security:snyk": "snyk test --dev",
+        "quality-tests": "npm run quality:sonarlint",
+        "quality:sonarlint": "node src/index --src \"src/**\" # 'tests \"tests/**\"'"
     },
     "dependencies": {},
     "devDependencies": {

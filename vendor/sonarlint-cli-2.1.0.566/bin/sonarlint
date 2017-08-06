@@ -1,0 +1,65 @@
+#!/bin/sh
+#
+# SonarLint Startup Script for Unix
+#
+# Optional ENV vars:
+#   SONARLINT_OPTS - parameters passed to the Java VM when running SonarLint
+
+real_path() {
+  target=$1
+
+  (
+  while true; do
+    cd "$(dirname "$target")"
+    target=$(basename "$target")
+    link=$(readlink "$target")
+    test "$link" || break
+    target=$link
+  done
+
+  echo "$(pwd -P)/$target"
+  )
+}
+
+script_path="$0"
+
+if [ -h "$script_path" ]; then
+  # resolve symlinks
+  script_path=$(real_path "$script_path")
+fi
+
+sonarlint_home=$(dirname "$script_path")/..
+
+# make it fully qualified
+sonarlint_home=$(cd "$sonarlint_home" && pwd -P)
+
+# check that the sonarlint_home has been correctly set
+if [ ! -f "$sonarlint_home/lib/sonarlint-cli-2.1.0.566.jar" ] ; then
+  echo "fatal: detected installation directory is invalid: $sonarlint_home"
+  echo 'fatal: lib/sonarlint-cli-2.1.0.566.jar should exist relative from the installation directory'
+  exit 1
+fi
+
+if [ -n "$JAVA_HOME" ]
+then
+  java_cmd="$JAVA_HOME/bin/java"
+else
+  java_cmd="$(which java)"
+fi
+
+jar_file="$sonarlint_home"/lib/sonarlint-cli-2.1.0.566.jar
+project_home=$PWD
+
+#echo "Info: Using sonarlint-cli in $sonarlint_home"
+#echo "Info: Using java at $java_cmd"
+#echo "Info: Using classpath $jar_file"
+#echo "Info: Using project $project_home"
+
+exec "$java_cmd" \
+  -Djava.awt.headless=true \
+  $SONARLINT_OPTS \
+  -classpath "$jar_file" \
+  -Dsonarlint.home="$sonarlint_home" \
+  -Dproject.home="$project_home" \
+  -Dorg.freemarker.loggerLibrary=none \
+  org.sonarlint.cli.Main "$@"
