@@ -1,5 +1,7 @@
 # sonarlint
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/adam-moss/sonarlint.svg)](https://greenkeeper.io/)
+
 Package [Sonarlint for Command Line](http://www.sonarlint.org/commandline/index.html) as an [npm](https://npmjs.com) module.
 
 Sonarlint provides pre-commit feedback to developers on new bugs and quality issues injected into code, with several languages supported and simple usage.
